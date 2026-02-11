@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  :root {
+    --background: 240 20% 97%;
+    --foreground: 220 15% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+    --primary: 259 80% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 175 85% 45%;
+    --secondary-foreground: 220 15% 15%;
+    --muted: 240 10% 94%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 259 80% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 45 93% 47%;
+    --warning-foreground: 0 0% 0%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 259 80% 55%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 259 80% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 175 85% 40%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 20%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 259 80% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 45 93% 50%;
+    --warning-foreground: 0 0% 0%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 259 80% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-transparent text-foreground antialiased;
+  }
+
+  .font-cursive {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
