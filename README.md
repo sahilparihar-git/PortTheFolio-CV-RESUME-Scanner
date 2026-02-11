@@ -41,25 +41,6 @@
 ### Prerequisites
 -   Node.js (v18+)
 
-### Installation
-
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/sahilparihar-git/PortTheFolio-CV-Scanner.git
-    cd PortTheFolio-CV-Scanner
-    ```
-
-2.  **Install dependencies**
-    ```bash
-    npm install
-    ```
-
-3.  **Run Locally**
-    ```bash
-    npm run dev
-    ```
-    The app will start at `http://localhost:8080`.
-
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
