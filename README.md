@@ -1,7 +1,7 @@
 # PortTheFolio - AI CV Scanner & Portfolio Analyzer
 
 <div align="center">
-  <img src="public/logo.png" alt="PortTheFolio Logo" width="120" />
+  <img src="public/logo.png" alt="PortTheFolio Logo" width="470" />
   <br />
   <h3>Unlock the potential of your portfolio with AI-driven analysis.</h3>
   <p>Get instant, actionable feedback to elevate your work.</p>
