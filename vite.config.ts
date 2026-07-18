@@ -64,7 +64,7 @@ export default defineConfig(({ mode }) => {
                 return;
               }
 
-              const AI_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+              const AI_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
 
               // Simple retry for local dev (simplified compared to Edge version for brevity, but functional)
               const fetchWithRetry = async (url, options, maxRetries = 3) => {
@@ -72,15 +72,15 @@ export default defineConfig(({ mode }) => {
                   try {
                     const r = await fetch(url, options);
                     if (r.status === 429) {
-                      const delay = 1000 * Math.pow(2, i);
-                      console.log(`Local Dev Rate Limit. Retrying in ${delay}ms...`);
+                      const delay = 3000 * Math.pow(2, i);
+                      console.log(`Groq rate limit. Retrying in ${delay}ms...`);
                       await new Promise(res => setTimeout(res, delay));
                       continue;
                     }
                     return r;
                   } catch (e) {
                     console.error("Fetch error:", e);
-                    await new Promise(res => setTimeout(res, 1000));
+                    await new Promise(res => setTimeout(res, 2000));
                   }
                 }
                 throw new Error("Failed after retries");
@@ -112,7 +112,7 @@ OUTPUT JSON: { "isCV": boolean, "documentType": string }`;
                     "Content-Type": "application/json"
                   },
                   body: JSON.stringify({
-                    model: "meta-llama/llama-3.3-70b-instruct:free",
+                    model: "llama-3.3-70b-versatile",
                     messages: [{ role: "user", content: `${fullClassify}\n\nDocument Text:\n${safeText.slice(0, 5000)}` }],
                     response_format: { type: "json_object" }
                   })
@@ -153,7 +153,7 @@ Output JSON schema: { "score": number, "isNotCV": boolean, "rejectionReasons": s
                   "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                  model: "meta-llama/llama-3.3-70b-instruct:free",
+                  model: "llama-3.3-70b-versatile",
                   messages: [{ role: "user", content: `${analysisSystemPrompt}\n\nDocument Text:\n${safeText}` }],
                   response_format: { type: "json_object" },
                   temperature: 0.3

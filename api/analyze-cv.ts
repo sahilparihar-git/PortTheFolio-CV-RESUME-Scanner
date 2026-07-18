@@ -52,7 +52,7 @@ export default async function handler(request: Request) {
             });
         }
 
-        const AI_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+        const AI_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
 
         const fetchWithRetry = async (url: string, options: RequestInit, maxRetries = 3, baseDelay = 1000) => {
             let lastError;
@@ -125,11 +125,9 @@ export default async function handler(request: Request) {
                     headers: {
                         Authorization: `Bearer ${AI_API_KEY}`,
                         "Content-Type": "application/json",
-                        "HTTP-Referer": "https://cv-scanner.app", // Optional. Site URL for rankings on openrouter.ai.
-                        "X-Title": "CV Scanner", // Optional. Site title for rankings on openrouter.ai.
                     },
                     body: JSON.stringify({
-                        model: "meta-llama/llama-3.3-70b-instruct:free",
+                        model: "llama-3.3-70b-versatile",
                         messages: [
                             {
                                 role: "user",
@@ -191,11 +189,9 @@ export default async function handler(request: Request) {
             headers: {
                 Authorization: `Bearer ${AI_API_KEY}`,
                 "Content-Type": "application/json",
-                "HTTP-Referer": "https://cv-scanner.app", // Optional. Site URL for rankings on openrouter.ai.
-                "X-Title": "CV Scanner", // Optional. Site title for rankings on openrouter.ai.
             },
             body: JSON.stringify({
-                model: "meta-llama/llama-3.3-70b-instruct:free",
+                model: "llama-3.3-70b-versatile",
                 messages: [
                     {
                         role: "user",
