@@ -112,7 +112,7 @@ OUTPUT JSON: { "isCV": boolean, "documentType": string }`;
                     "Content-Type": "application/json"
                   },
                   body: JSON.stringify({
-                    model: "google/gemma-3-12b-it:free",
+                    model: "meta-llama/llama-3.3-70b-instruct:free",
                     messages: [{ role: "user", content: `${fullClassify}\n\nDocument Text:\n${safeText.slice(0, 5000)}` }],
                     response_format: { type: "json_object" }
                   })
@@ -135,6 +135,8 @@ OUTPUT JSON: { "isCV": boolean, "documentType": string }`;
                         return;
                       }
                     } catch (e) { }
+                  } else {
+                    console.error("Local Middleware: No content returned for classification");
                   }
                 }
               }
@@ -151,7 +153,7 @@ Output JSON schema: { "score": number, "isNotCV": boolean, "rejectionReasons": s
                   "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                  model: "google/gemma-3-12b-it:free",
+                  model: "meta-llama/llama-3.3-70b-instruct:free",
                   messages: [{ role: "user", content: `${analysisSystemPrompt}\n\nDocument Text:\n${safeText}` }],
                   response_format: { type: "json_object" },
                   temperature: 0.3
@@ -168,6 +170,14 @@ Output JSON schema: { "score": number, "isNotCV": boolean, "rejectionReasons": s
 
               const aData = await analyzeResp.json();
               const aContent = aData.choices?.[0]?.message?.content;
+              
+              if (!aContent) {
+                res.statusCode = 500;
+                res.setHeader("Content-Type", "application/json");
+                res.end(JSON.stringify({ error: "AI response format invalid (no content). Please retry." }));
+                return;
+              }
+
               const cleanContent = aContent.replace(/```json\n?|\n?```/g, "").trim();
               const args = JSON.parse(cleanContent);
 

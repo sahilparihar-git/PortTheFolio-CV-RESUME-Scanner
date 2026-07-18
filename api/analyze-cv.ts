@@ -129,7 +129,7 @@ export default async function handler(request: Request) {
                         "X-Title": "CV Scanner", // Optional. Site title for rankings on openrouter.ai.
                     },
                     body: JSON.stringify({
-                        model: "google/gemma-3-12b-it:free",
+                        model: "meta-llama/llama-3.3-70b-instruct:free",
                         messages: [
                             {
                                 role: "user",
@@ -195,7 +195,7 @@ export default async function handler(request: Request) {
                 "X-Title": "CV Scanner", // Optional. Site title for rankings on openrouter.ai.
             },
             body: JSON.stringify({
-                model: "google/gemma-3-12b-it:free",
+                model: "meta-llama/llama-3.3-70b-instruct:free",
                 messages: [
                     {
                         role: "user",
